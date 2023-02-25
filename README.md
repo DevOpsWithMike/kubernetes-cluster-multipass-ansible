@@ -26,19 +26,16 @@ This script will:
 
 _______________________
 
-## Access cluster
+## How to Access cluster
 
-### A) From kube-node-0 (`multipass shell kube-node-0`)
-You can access kubernetes cluster through `kube-node-0` by opening a shell to it with `multipass shell kube-node-0`.
+### A) From host (get .kube/config from `control-plane-node`)
+You can access the cluster directly with `kubectl` from the host machine by getting the `~/.kube/config` from `control-plane-node`
 ```bash
-multipass shell kube-node-0
 kubectl get nodes
 ```
-
-### B) From host (get .kube/config from `kube-node-0`)
-You can access the cluster directly with `kubectl` from the host machine by getting the `~/.kube/config` from `kube-node-0`
+### B) From kube-node-0 (`multipass shell kube-node-0`)
+You can access kubernetes cluster through `kube-node-0` by opening a shell to it with `multipass shell control-plane-node`.
 ```bash
-mkdir -p ~/.kube/
-multipass transfer kube-node-0:/home/ubuntu/.kube/config - > ~/.kube/config
+multipass shell control-plane-node
 kubectl get nodes
 ```
