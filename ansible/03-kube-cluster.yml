@@ -35,8 +35,7 @@
   # # https://projectcalico.docs.tigera.io/getting-started/kubernetes/self-managed-onprem/onpremises#install-calico-with-kubernetes-api-datastore-50-nodes-or-less
   - name: Install calico pod network
     become: false
-    ansible.builtin.command: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/calico.yaml
-    args:
+    ansible.builtin.command: sudo kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/calico.yaml    args:
       creates: /opt/cni/bin/calico
 
 
