@@ -7,7 +7,7 @@ To create the vms run the `deploy-cluster` script (`./deploy-cluster`)
 
 This script will:
 
-## Create the ubuntu vms with multipass
+# Create the ubuntu vms with multipass
 
 
 * Create and start 3 vms (with names `kube-node-0`, `kube-node-1`, `kube-node-2`)
@@ -15,7 +15,7 @@ This script will:
 * Create the ansible `inventory` file by getting each vm's ip.
 
 
-## Create and configure kubernetes cluster with ansible
+# Create and configure kubernetes cluster with ansible
 
 Every ansible playbook must be run from `./ansible` directory (`cd ansible`).
 
