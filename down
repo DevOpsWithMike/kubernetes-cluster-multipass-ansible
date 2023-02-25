@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
-multipass stop --verbose kube-node-0
+multipass stop --verbose control-plane-node
 multipass stop --verbose kube-node-1
 multipass stop --verbose kube-node-2
 
-multipass delete kube-node-0
+multipass delete control-plane-node
 multipass delete kube-node-1
 multipass delete kube-node-2
 
 multipass purge --verbose
+echo "Check multipass vms after deletion"
+multipass list
