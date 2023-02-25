@@ -1,4 +1,4 @@
-# Kubernetes Cluster
+# Kubernetes cluster deployment
 Create a kubernetes cluster from scratch with [multipass](https://multipass.run/install) vms and [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 
