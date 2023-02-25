@@ -5,7 +5,7 @@ vm-up() {
   if multipass info "${name}" &> /dev/null; then
     echo "${name} exists"
   else
-    multipass launch --name "${name}" --mem 8g --cpus 2 --disk 20G 22.04
+    multipass launch --name "${name}" --mem 3g --cpus 2 --disk 15G 22.04
   fi
 }
 
@@ -21,18 +21,18 @@ apend-key-to-authorized-keys() {
 }
 
 # Create the nodes
-vm-up "kube-node-0"
+vm-up "control-plane-node"
 vm-up "kube-node-1"
 vm-up "kube-node-2"
 
 # Add ssh key to authorized_keys
-apend-key-to-authorized-keys "kube-node-0"
+apend-key-to-authorized-keys "control-plane-node"
 apend-key-to-authorized-keys "kube-node-1"
 apend-key-to-authorized-keys "kube-node-2"
 
 # Create ansible inventory
 echo "
-kube-node-0 ansible_ssh_host=$(get-ip "kube-node-0")
+control-plane-node ansible_ssh_host=$(get-ip "control-plane-node")
 kube-node-1 ansible_ssh_host=$(get-ip "kube-node-1")
 kube-node-2 ansible_ssh_host=$(get-ip "kube-node-2")
 
@@ -40,3 +40,16 @@ kube-node-2 ansible_ssh_host=$(get-ip "kube-node-2")
 kube-node-1
 kube-node-2
 " > ./ansible/inventory
+cd ansible
+./bin/install-ansible-collections-and-roles
+./bin/ansible-playbook 00-prequirements.yml
+./bin/ansible-playbook 01-crio.yml
+./bin/ansible-playbook 02-kube-install.yml
+./bin/ansible-playbook 03-kube-cluster.yml
+multipass exec control-plane-node -- sudo chmod +r /home/ubuntu/.kube/config
+mkdir -p ~/.kube/
+multipass transfer control-plane-node:/home/ubuntu/.kube/config - > ~/.kube/config
+multipass exec control-plane-node -- sudo chmod 600 /home/ubuntu/.kube/config
+echo -e "\nKubernetes cluster deployment and configuration ended"
+echo -e "\nKubernetes cluster stutus"
+kubectl get nodes
