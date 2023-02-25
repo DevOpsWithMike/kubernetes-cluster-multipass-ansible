@@ -1,5 +1,5 @@
 # Kubernetes cluster deployment
-Create a kubernetes cluster from scratch with [multipass](https://multipass.run/install) vms and [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
+Create a kubernetes cluster from scratch with [multipass](https://multipass.run/install) virtual machines and [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 
 
@@ -7,17 +7,15 @@ To create the vms run the `deploy-cluster` script (`./deploy-cluster`)
 
 This script will:
 
-# Create the ubuntu vms with multipass
+### Create the ubuntu vms with multipass
 
 
-* Create and start 3 vms (with names `kube-node-0`, `kube-node-1`, `kube-node-2`)
+* Create and start 3 vms (with names `control-plane-node`, `kube-node-1`, `kube-node-2`)
 * Add the public key `./keys/key.pub` in each vm's `authorized_keys`
 * Create the ansible `inventory` file by getting each vm's ip.
 
 
-# Create and configure kubernetes cluster with ansible
-
-Every ansible playbook must be run from `./ansible` directory (`cd ansible`).
+### Create and configure kubernetes with cluster with ansible using the below playbooks
 
 * `./bin/install-ansible-collections-and-roles` Installs ansible collections and roles.
 * `./bin/ansible-playbook 00-prequirements.yml` Installs basic configuration requirements for each node.
