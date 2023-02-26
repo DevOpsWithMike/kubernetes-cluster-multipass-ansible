@@ -1,5 +1,5 @@
 ---
-- hosts: control-plane-node
+- hosts: kube-node-0
   become: true
   tasks:
   - name: Initialize the Kubernetes cluster using kubeadm
@@ -35,7 +35,8 @@
   # # https://projectcalico.docs.tigera.io/getting-started/kubernetes/self-managed-onprem/onpremises#install-calico-with-kubernetes-api-datastore-50-nodes-or-less
   - name: Install calico pod network
     become: false
-    ansible.builtin.command: sudo kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/calico.yaml    args:
+    ansible.builtin.command: sudo kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/calico.yaml
+    args:
       creates: /opt/cni/bin/calico
 
 
@@ -48,6 +49,6 @@
   become: true
   tasks:
   - name: Run a command to join cluster
-    ansible.builtin.shell: "{{ hostvars['control-plane-node']['join_command'].stdout_lines | first }}"
+    ansible.builtin.shell: "{{ hostvars['kube-node-0']['join_command'].stdout_lines | first }}"
     args:
       creates: /opt/cni/bin/calico
