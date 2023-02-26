@@ -3,7 +3,7 @@ Create a kubernetes cluster from scratch with [multipass](https://multipass.run/
 
 
 
-To create the vms run the `cluster-deploy` script (`./cluster-deploy`)
+To create the vms run the `cluster-deploy` script in this way: `./cluster-deploy`
 
 This script will perform the below steps:
 
