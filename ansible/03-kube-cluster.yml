@@ -1,5 +1,5 @@
 ---
-- hosts: kube-node-0
+- hosts: control-plane-node
   become: true
   tasks:
   - name: Initialize the Kubernetes cluster using kubeadm
@@ -48,6 +48,6 @@
   become: true
   tasks:
   - name: Run a command to join cluster
-    ansible.builtin.shell: "{{ hostvars['kube-node-0']['join_command'].stdout_lines | first }}"
+    ansible.builtin.shell: "{{ hostvars['control-plane-node']['join_command'].stdout_lines | first }}"
     args:
       creates: /opt/cni/bin/calico
