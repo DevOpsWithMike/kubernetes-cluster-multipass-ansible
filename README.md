@@ -38,3 +38,32 @@ You can access kubernetes cluster through `control-plane-node` by opening a shel
 multipass shell control-plane-node
 kubectl get nodes
 ```
+
+______________________________________
+## Configuration 
+
+In this repo virtual machines are set with 3 GB RAM and 2 CPU.
+The official documentation infact suggests: 
+2 GiB or more of RAM per machine--any less leaves little room for your apps.
+At least 2 CPUs on the machine that you use as a control-plane node.
+
+
+______________________________________
+## Troubleshooting
+
+If something went wrong during the cluster deployment you can get the following error 
+`HTTP Error 500: Internal Server Error`
+don't be discouraged it may be a momentaneous issue;
+Undeploy the cluster running the script
+```bash
+./cluster-destroy
+```
+Check if there are no virtual machines running
+```bash
+multipass list
+```
+Deploy again the cluster
+```bash
+./cluster-deploy
+```
+
