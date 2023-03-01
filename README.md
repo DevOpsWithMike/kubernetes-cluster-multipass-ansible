@@ -44,17 +44,17 @@ ______________________________________
 
 In this repo virtual machines are set with 3 GB RAM and 2 CPU.
 The official documentation infact suggests: 
-2 GiB or more of RAM per machine--any less leaves little room for your apps.
-At least 2 CPUs on the machine that you use as a control-plane node.
+`2 GiB or more of RAM per machine--any less leaves little room for your apps.
+At least 2 CPUs on the machine that you use as a control-plane node.`
 
 
 ______________________________________
 ## Troubleshooting
 
-If something went wrong during the cluster deployment you can get the following error 
+If something went wrong during the cluster deployment you can get the following error: 
 `HTTP Error 500: Internal Server Error`
 don't be discouraged it may be a momentaneous issue;
-Undeploy the cluster running the script
+undeploy the cluster running the script
 ```bash
 ./cluster-destroy
 ```
