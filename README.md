@@ -40,10 +40,10 @@ kubectl get nodes
 ```
 
 ______________________________________
-## Configuration 
+## Virtual machine resource configuration 
 
-In this repo virtual machines are set with 3 GB RAM and 2 CPU.
-The official documentation infact suggests: 
+In this repo virtual machines are set with 3 GB RAM and 2 CPU; you can modify those values in the cluster-deploy script. <br />
+The official documentation infact suggests: <br />
 `2 GiB or more of RAM per machine--any less leaves little room for your apps.
 At least 2 CPUs on the machine that you use as a control-plane node.`
 
