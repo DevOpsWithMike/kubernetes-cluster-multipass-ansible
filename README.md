@@ -1,5 +1,5 @@
-# How to deploy a Kubernetes cluster with Kubeadm, multipass and Ansible
-Create a kubernetes cluster from scratch with [multipass](https://multipass.run/install) virtual machines and [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
+# How to deploy a Kubernetes cluster with Kubeadm, Multipass and Ansible
+Create a Kubernetes cluster from scratch with [multipass](https://multipass.run/install) virtual machines and [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html).
 
 
 
@@ -7,7 +7,7 @@ To create the vms run the `cluster-deploy` script in this way: `./cluster-deploy
 
 This script will perform the below steps:
 
-#### 1. Create the ubuntu vms with multipass
+#### 1. Create the ubuntu vms with Multipass
 
 * Create and start 3 vms (with names `control-plane-node`, `kube-node-1`, `kube-node-2`)
 * Add the public key `./keys/key.pub` in each vm's `authorized_keys`
@@ -42,7 +42,7 @@ kubectl get nodes
 ______________________________________
 ## Virtual machine resource configuration 
 
-In this repo virtual machines are set with 3 GB RAM and 2 CPU; you can modify those values in the cluster-deploy script. <br />
+In this repo virtual machines are set with 3 GB RAM and 2 CPUs; you can modify those values in the cluster-deploy script. <br />
 The official documentation infact suggests: <br />
 `2 GiB or more of RAM per machine--any less leaves little room for your apps.
 At least 2 CPUs on the machine that you use as a control-plane node.`
